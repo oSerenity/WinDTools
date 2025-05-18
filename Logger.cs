@@ -17,7 +17,7 @@ namespace WinDTools
 
         public static void Log(string message, LogLevel level = LogLevel.INFO)
         {
-            string formattedMessage = $"[{DateTime.Now:HH:mm:ss}] [{level}] {message}";
+            string formattedMessage = $"[{DateTime.Now:hh:mm:ss tt}] [{level}] {message}";
 
             // Write to log file (append)
             File.AppendAllText(logFilePath, formattedMessage + Environment.NewLine);
@@ -64,6 +64,7 @@ namespace WinDTools
             if (File.Exists(logFilePath))
                 Process.Start("explorer.exe", logFilePath);
         }
+
     }
 
 }
