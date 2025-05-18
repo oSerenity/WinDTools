@@ -7,7 +7,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Security.Principal;
-using System.Text.Json;
 using System.Windows.Forms;
 using WinDTools;
 
