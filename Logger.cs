@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WinDTools
 {
 
-    public enum LogLevel { SUCCESS ,INFO, WARNING, ERROR }
+    public enum LogLevel { SUCCESS, INFO, WARNING, ERROR }
 
     public static class Logger
     {
@@ -31,7 +28,7 @@ namespace WinDTools
         }
         public static void LogException(Exception ex, string context = "")
         {
-            string prefix = string.IsNullOrWhiteSpace(context) ? "" : $"{context}: ";
+            string prefix = string.IsNullOrWhiteSpace(context) ? string.Empty : $"{context}: ";
             Log($"{prefix}{ex.GetType().Name} - {ex.Message}", LogLevel.ERROR);
         }
 

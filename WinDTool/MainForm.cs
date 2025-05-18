@@ -1,7 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -143,7 +142,7 @@ namespace WinDTool
         {
             var selected = SelectFolder("Select Base Directory", txtBaseDirectory.Text);
             if (selected != null)
-                 txtBaseDirectory.Text = selected;
+                txtBaseDirectory.Text = selected;
         }
 
         private void btnSelectDll_Click(object sender, EventArgs e)
@@ -270,7 +269,7 @@ namespace WinDTool
 
                 var md5 = System.Security.Cryptography.MD5.Create();
                 byte[] hash = md5.ComputeHash(fileBytes);
-                return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+                return BitConverter.ToString(hash).Replace("-", string.Empty).ToLowerInvariant();
             }
             catch (IOException ex)
             {
