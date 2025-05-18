@@ -28,7 +28,7 @@
 1. Clone the repo:
    ```bash
    git clone https://github.com/oSerenity/WinDTool.git
-###⚙️ Configuration Example:
+⚙️ Configuration Example:
 ```json
 {
   "BaseDirectory": "C:\\Users\\yourname\\Documents\\XboxOneGames",
