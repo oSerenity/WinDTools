@@ -33,15 +33,6 @@ namespace WinDTool
         public MainForm()
         {
             InitializeComponent();
-            LoadConfig();
-            CheckGitHubPath();
-            CheckDefaultScanPath();
-            string str = IsDeveloperModeEnabled() ? "Enabled" : "Disabled";
-            string text = Text;
-            if (IsRunAsAdmin())
-                Text = "Administrator: " + text + " Developer Mode: " + str;
-            else
-                Text = text + " Developer Mode: " + str;
         }
 
         private void AppendLogLine(string logLine, Color logColor)
@@ -311,6 +302,8 @@ namespace WinDTool
             githubPath = config.GitHubPath.Replace("{USER}", Environment.UserName);
             IsDebug = config.DebugMode ? 1 : 0;
             ignoredFolders = new HashSet<string>(config.IgnoredFolders);
+            txtDllPath.Text = githubPath;
+            txtBaseDirectory.Text = BaseDirectory;
         }
 
         private void LoadExistingLogs()
@@ -323,14 +316,27 @@ namespace WinDTool
             foreach (string log in logs)
             {
                 var level = Logger.ParseLogLevel(log);
-                AppendLogLine(log, Logger.MapLogLevelToColor(level));
+                string LogLine = Logger.RemoveLevel(log,level);
+                AppendLogLine(LogLine, Logger.MapLogLevelToColor(level));
             }
 
             txtLog.SelectionStart = txtLog.TextLength;
             txtLog.ScrollToCaret();
         }
+
+
+
         private void MainForm_Load(object sender, EventArgs e)
         {
+            LoadConfig();
+            CheckGitHubPath();
+            CheckDefaultScanPath();
+            string str = IsDeveloperModeEnabled() ? "Enabled" : "Disabled";
+            string text = Text;
+            if (IsRunAsAdmin())
+                Text = "Administrator: " + text + " Developer Mode: " + str;
+            else
+                Text = text + " Developer Mode: " + str;
             SetupDllMonitoring();
             PopulateSettingsTab();
             Logger.OnLogMessage += AppendLogLine;
@@ -380,7 +386,7 @@ namespace WinDTool
 
                 RetryFileCopy(dllPath, destDllPath);
 
-                Logger.Log($"Replaced: " + GetApplicationName(destDllPath), LogLevel.INFO);
+                Logger.Log($"Replaced: " + GetApplicationName(destDllPath), LogLevel.SUCCESS);
 
                 if (File.Exists(sourcePdb))
                 {
@@ -535,6 +541,16 @@ namespace WinDTool
                     dllHashes[dllPath] = GetFileHash(dllPath);
                 }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            LoadConfig();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Logger.OpenLogFile();
         }
     }
 }

@@ -54,6 +54,8 @@ namespace WinDTool
             this.txtGitHubPath = new System.Windows.Forms.TextBox();
             this.txtBaseDirectory = new System.Windows.Forms.TextBox();
             this.txtLog = new System.Windows.Forms.RichTextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -126,6 +128,7 @@ namespace WinDTool
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button3);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.btnSelectDll);
             this.tabPage1.Controls.Add(this.btnSelectDirectory);
@@ -203,6 +206,7 @@ namespace WinDTool
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button2);
             this.tabPage3.Controls.Add(this.btnSaveSettings);
             this.tabPage3.Controls.Add(this.btnSelectBaseDirectory);
             this.tabPage3.Controls.Add(this.btnSelectGitHubPath);
@@ -272,9 +276,33 @@ namespace WinDTool
             this.txtLog.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtLog.Location = new System.Drawing.Point(0, 179);
             this.txtLog.Name = "txtLog";
+            this.txtLog.ReadOnly = true;
             this.txtLog.Size = new System.Drawing.Size(509, 121);
             this.txtLog.TabIndex = 7;
+            this.txtLog.Text = "";
             this.txtLog.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.txtLog_MouseDoubleClick);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(267, 123);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(112, 24);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "Load";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(266, 124);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(112, 24);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "Open Log File";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // MainForm
             // 
@@ -320,5 +348,7 @@ namespace WinDTool
         private Button btnSelectGitHubPath;
         private TextBox txtGitHubPath;
         private TextBox txtBaseDirectory;
+        private Button button2;
+        private Button button3;
     }
 }

@@ -24,6 +24,8 @@ namespace WinDTools
 
             // Trigger event to UI
             Color logColor = MapLogLevelToColor(level);
+            formattedMessage = $"[{DateTime.Now:hh:mm:ss tt}] {message}";
+
             OnLogMessage?.Invoke(formattedMessage, logColor);
         }
         public static void LogException(Exception ex, string context = "")
@@ -38,6 +40,13 @@ namespace WinDTools
             if (logLine.Contains("[ERROR]")) return LogLevel.ERROR;
             if (logLine.Contains("[WARNING]")) return LogLevel.WARNING;
             return LogLevel.INFO;
+        }
+        public static string RemoveLevel(string log, LogLevel level)
+        {
+            if (log.Contains(level.ToString()))
+                return log.Replace($"[{level}] ", string.Empty).Trim();
+            else
+                return log;
         }
         public static Color MapLogLevelToColor(LogLevel level)
         {
